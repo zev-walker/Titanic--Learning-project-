@@ -80,8 +80,8 @@ lr_model.fit(X_train, y_train)
 #Making predictions and evaluating performance
 y_pred = lr_model.predict(X_test)
 
-accuracy = accuracy_score(y_test, y_pred)
-print(accuracy)
+accuracy_lr = accuracy_score(y_test, y_pred)
+print(accuracy_lr)
 
 #Trying a different model and then making predictions and evaluating performance
 rf_model = RandomForestClassifier()
@@ -89,8 +89,18 @@ rf_model(X_train, y_train)
 
 y_pred_rf = rf_model.predict(y_test, y_pred_rf)
 
-accuracu_rf = accuracy_score(y_test, y_pred_rf)
+accuracy_rf = accuracy_score(y_test, y_pred_rf)
+print(accuracy_rf)
 
 #Confusion Matrices for both models
 confuson_matrix(y_test, y_pred)
 confusion_matrix(y_test, y_pred_rf)
+
+print("========== Model Comparison ==========")
+print(f"Logistic Regression Accuracy : {accuracy_lr:.3f}")
+print(f"Random Forest Accuracy       : {accuracy_rf:.3f}")
+
+if accuracy_lr > accuracy_rf:
+    print("\nSelected Model : Logistic Regression")
+else:
+    print("\nSelected Model : Random Forest")

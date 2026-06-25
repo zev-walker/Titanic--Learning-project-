@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble impoirt RandonForestClassifier
 from sklearn.metrics import accuracy_score
 
 
@@ -70,3 +71,21 @@ y = titanic["Survived"]
 X-train, X_test, y_train, y_test = train_test_split(
   X, y, test_size = 0.2, random_state = 42
 )
+
+#Creating and training model
+lr_model = LogisticRegression()
+lr_model.fit(X_train, y_train)
+
+#Making predictions and evaluating performance
+y_pred = lr_model.predict(X_test)
+
+accuracy = accuracy_score(y_test, y_pred)
+print(accuracy)
+
+#Trying a different model and then making predictions and evaluating performance
+rf_model = RandomForestClassifier()
+rf_model(X_train, y_train)
+
+y_pred_rf = rf_model.predict(y_test, y_pred_rf)
+
+accuracu_rf = accuracy_score(y_test, y_pred_rf)

@@ -22,3 +22,43 @@ titanic.tail()
 #Getting more info about the rows
 titanic.info()
 
+#viewing the list of columns
+titanic.columns
+
+#correcting names and dropping unwanted columns
+titanic = titanic.rename(columns = {"2urvived" : "Survived"})
+
+cols_to_drop = [col for col in titanic.columns if "zero" in col]
+
+titanic = titanic.drop(columns = cols_to_drop)
+
+titanic =  titanic.drop(columns = "Passengerid")
+
+#Checking null values
+titanic.isnull().sum()
+
+#adding values in place of null values
+tianic["Embarked"] = titanic["Embarked"].fillna(titanic["Embarked"].mode()[0])
+
+#Data Visualization
+sns.countplot(data = titanic, x = "Survived", Hue = "Sex")
+plt.title("Survival count by Sex")
+plt.show()
+
+sns.countplot(data = titanic, x = "Survived", hue = "Pclass" )
+plt.title("Survival count by Class")
+plt.show()
+
+sns.histplot(data = tianic, x = "Age", hue = "Survived", multiple = "stack", palatte = "coolwarm", kde = True)
+plt.title("Age Distribution by Survival Status")
+plt.xlabel("Age")
+plt.ylabel("Count")
+plt.plot()
+
+sns.boxplot(data = titanic, x = "Survived", y = "Fare", palette = "Set2")
+plt.title("Fare Paid vs Survival Status")
+plt.xlabel("Survived (0 = No, 1 = Yes)")
+plt.ylabel("Fare Paid")
+plt.ylim(0, 300)
+plt.show()
+
